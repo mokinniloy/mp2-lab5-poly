@@ -1,10 +1,11 @@
 #pragma once
 
 class TDatValue;
-typedef 
+typedef TDatValue *PTDatValue;
 
-class TDatValue {
-    public:
-        virtual TDatValue * GetCopy() =0;                           // создание копии
-        ~TDatValue() {}
+class TDatValue
+{
+  public:
+    virtual TDatValue *GetCopy() = 0; // создание копии
+    ~TDatValue() {}
 };
