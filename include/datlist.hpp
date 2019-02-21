@@ -44,7 +44,7 @@ public:
   // вставка звеньев
   virtual void InsFirst(PTDatValue pVal = NULL);   // перед первым
   virtual void InsLast(PTDatValue pVal = NULL);    // вставить последним
-  virtual void InsCurrent(PTDatValue pVal = NULL); // перед текущим
+  virtual void InsCurrent(PTDatValue pVal = NULL); // после текущего
 
   // удаление звеньев
   virtual void DelFirst(void);   // удалить первое звено
