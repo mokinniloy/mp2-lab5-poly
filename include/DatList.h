@@ -1,5 +1,14 @@
+#include "datlink.h"
+#include "datvalue.h"
+
 #ifndef __TDATLIST_H__
 #define __TDATLIST_H__
+
+#define ListEmpty -101 // список пуст
+#define ListNoMem -102 // нет памяти
+#define ListNoPos -103 // ошибочное положение текущего указателя
+
+enum TLinkPos {FIRST, CURRENT, LAST};
 
 class TDatList {
   protected:
@@ -21,11 +30,11 @@ class TDatList {
     virtual int IsEmpty()  const { return pFirst==pStop; } // список пуст ?
     int GetListLength()    const { return ListLen; }       // к-во звеньев
     // навигация
-    int SetCurrentPos ( int pos );          // установить текущее звено
+    void SetCurrentPos ( int pos );          // установить текущее звено
     int GetCurrentPos () const;       // получить номер тек. звена
-    virtual int Reset ();             // установить на начало списка
+    virtual void Reset ();             // установить на начало списка
     virtual int IsListEnded () const; // список завершен ?
-    int GoNext ();                    // сдвиг вправо текущего звена
+    void GoNext ();                    // сдвиг вправо текущего звена
                 // (=1 после применения GoNext для последнего звена списка)
     // вставка звеньев
     virtual void InsFirst  ( PTDatValue pVal=NULL ); // перед первым

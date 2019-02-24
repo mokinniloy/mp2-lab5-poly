@@ -1,3 +1,6 @@
+#include <iostream>
+#include "datvalue.h"
+
 #ifndef __ROOTLINK_H__
 #define __ROOTLINK_H__
 

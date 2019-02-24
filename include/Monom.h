@@ -1,3 +1,4 @@
+#include <iostream>
 #include "datvalue.h"
 
 #ifndef __MONOM_H__
@@ -9,7 +10,7 @@ class TMonom : public TDatValue  {     protected:
   public:
     TMonom ( int cval=1, int ival=0 ) {
       Coeff=cval; Index=ival;
-    };
+    }
     virtual TDatValue * GetCopy(); // изготовить копию
     void SetCoeff(int cval) { Coeff=cval;   }
     int  GetCoeff()     { return Coeff; }
@@ -28,4 +29,5 @@ class TMonom : public TDatValue  {     protected:
     friend class TPolinom;
 };
 
+typedef TMonom* PTMonom;
 #endif // __MONOM_H__

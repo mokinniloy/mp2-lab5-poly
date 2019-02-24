@@ -1,3 +1,8 @@
+#include <iostream>
+
+#include "datvalue.h"
+#include "rootlink.h"
+
 #ifndef __DATLINK_H__
 #define __DATLINK_H__
 
