@@ -17,9 +17,8 @@ void TDatList::DelLink (PTDatLink pLink) {
 }
 
 TDatList::TDatList() {
-    pFirst = pLast = pStop = pCurrLink = pPrevLink = NULL;
-    CurrPos = -1;//0???
-    ListLen = 0;
+    pFirst = pLast = pStop = pPrevLink = pCurrLink = NULL;
+	ListLen = 0, CurrPos = -1;
 }
 
 PTDatValue TDatList::GetDatValue(TLinkPos mode) const {
@@ -45,7 +44,7 @@ int TDatList::GetCurrentPos() const {
 void TDatList::Reset() {//???
     pPrevLink = pStop;
     if(IsEmpty()) {
-        pCurrLink = pStop; CurrPos = -1;//???
+        pCurrLink = pStop; CurrPos = -1;
     }
     else {
         pCurrLink = pFirst; CurrPos = 0;
@@ -56,7 +55,7 @@ int TDatList::IsListEnded() const {
     return pCurrLink == pStop;
 }
 
-void TDatList::GoNext() { //int???
+void TDatList::GoNext() {
     if(pCurrLink == pStop)
         throw ListNoPos;
     pPrevLink = pCurrLink;
@@ -147,8 +146,10 @@ void TDatList::DelCurrent() {
             pLast = pPrevLink;
             pCurrLink = pStop;
         }
-        pCurrLink = pCurrLink->GetNextDatLink();
-        pPrevLink->SetNextLink(pCurrLink);
+		else {
+			pCurrLink = pCurrLink->GetNextDatLink();
+		}
+		pPrevLink->SetNextLink(pCurrLink);
         DelLink(tmp);
         --ListLen;
     }

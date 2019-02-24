@@ -6,7 +6,9 @@ TPolinom::TPolinom(int monoms[][2], int km) {
     pHead->SetDatValue(pMonom);
     for(int i = 0; i < km; i++) {
         if(monoms[i][1] < 0 || monoms[i][1] > 999)
+        {
             throw PolinomWrongIndex;
+        }
         pMonom = new TMonom(monoms[i][0], monoms[i][1]);
         InsLast(pMonom);
     }
