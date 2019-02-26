@@ -9,7 +9,7 @@ public:
                                                 // полинома из массива «коэффициент-индекс»
   TPolinom(/*const*/ TPolinom &q);                  // конструктор копирования
   PTMonom GetMonom() { return (PTMonom)GetDatValue(); }
-  TPolinom &operator+(TPolinom &q);                                  // сложение полиномов
+  TPolinom &operator+=(TPolinom &q);                                  // сложение полиномов
   TPolinom &operator=(/*const*/ TPolinom &q);                                  // присваивание
   int CalculatePolinom(int x, int y, int z);                         //Вычисление значения полинома
   TPolinom& Integration(bool x = true, bool y = true, bool z = true); //Интегрирование,по какой переменной

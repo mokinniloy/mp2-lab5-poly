@@ -32,7 +32,7 @@ TPolinom &TPolinom::operator=(/*const*/ TPolinom &q)
         InsLast(pMonom->GetCopy()); //delete Pmonom
     }
 }
-TPolinom &TPolinom::operator+(TPolinom &q)
+TPolinom &TPolinom::operator+=(TPolinom &q)
 {
     PTMonom pm, qm, rm;
     Reset();

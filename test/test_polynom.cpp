@@ -229,7 +229,7 @@ TEST(TPolinom, summ_of_polinoms)
     TPolinom p(arrMn, size);
     TPolinom p1(arrMn2, size);
     TPolinom r(arrMnR, 3);
-    TPolinom summ = p + p1;
+    TPolinom summ = p+= p1;
     summ.Reset();
     r.Reset();
     bool okey = true;

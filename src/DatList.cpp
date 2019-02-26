@@ -9,7 +9,7 @@ PTDatLink TDatList::GetLink(PTDatValue pVal, PTDatLink pLink)
 {
     PTDatLink temp = new TDatLink(pVal, pLink); // выделение звена
     if (temp == NULL)
-        throw "List doesn't have memory";
+        throw "List doesn't have memory!";
     return temp;
 }
 void TDatList::DelLink(PTDatLink pLink)

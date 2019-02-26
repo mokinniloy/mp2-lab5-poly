@@ -59,7 +59,7 @@ int main() // Polinom testing
     cout << "2 Polinom" << endl
          << *p1 << endl;
     cout << "Summ of Polinom :" << endl
-         << (*p + *p1);
+         << (*p+= *p1);
     cout << "\nCalculate Polinom" << endl;
     cout << "Input x" << endl;
     cin >> x;
