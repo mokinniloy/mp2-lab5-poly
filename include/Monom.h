@@ -3,6 +3,7 @@
 #define __TMONOM_H__
 
 #include "DatValue.h"
+#include "iostream"
 
 class TMonom;
 typedef TMonom *PTMonom;
@@ -28,8 +29,13 @@ class TMonom : public TDatValue  {     protected:
       return (Coeff==tm.Coeff) && (Index==tm.Index);
     }
     int operator<(const TMonom &tm) {
-      return Index<tm.Index;
+		if ((Index<tm.Index)&&(Coeff<=tm.Coeff))
+			return 1;
+		else if ((Index>=tm.Index)&&(Coeff<tm.Coeff))
+			return 1;
+		else return 0;
     }
+	friend std::ostream& operator<< (std::ostream &os, TMonom &tm);
     friend class TPolinom;
 };
 

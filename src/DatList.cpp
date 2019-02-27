@@ -1,14 +1,15 @@
 #include "DatList.h"
 
-	PTDatLink TDatList :: GetLink ( PTDatValue pVal, PTDatLink pLink)  
+	PTDatLink TDatList :: GetLink (PTDatValue pVal, PTDatLink pLink)  
 {
-	return pLink->GetNextDatLink(); //??????????????????????????
+	PTDatLink link = new TDatLink(pVal, pLink);
+	return link;
 }
 
-    void TDatList :: DelLink ( PTDatLink pLink )   // удаление звена
+    void TDatList :: DelLink (PTDatLink pLink)   // удаление звена
 	{
 		Reset(); //устанавливаем на начало списка
-		while (pCurrLink != pLink && !IsListEnded())
+		while ((pCurrLink != pLink)&&(!IsListEnded()))
 			GoNext();
 		if (IsListEnded()) 
 			throw -1;
@@ -28,50 +29,55 @@
 	}
 
     // доступ
-    PTDatValue TDatList :: GetDatValue (TLinkPos mode = CURRENT) const  // значение
+    PTDatValue TDatList :: GetDatValue (TLinkPos mode) const  // значение
 	{
 		switch (mode) {
 		case CURRENT: 
 			return pCurrLink -> GetDatValue();
-		case FIRST:
+		case BEGIN:
 			return pFirst -> GetDatValue();
-		case LAST:
+		case END:
 			return pLast -> GetDatValue();
 		default: 
 			throw -1;
 		}
 	}
     // навигация
-    int TDatList :: SetCurrentPos ( int pos )         // установить текущее звено
+    int TDatList :: SetCurrentPos (int pos)         // установить текущее звено
 	{
 		if ((pos<0)||(pos>=GetListLength()))
 			throw -1;
 		Reset();
-		PTDatLink link = pFirst;
+		pCurrLink = pFirst;
 		for (int i=0; i<pos-1; i++)
-			link = link -> GetNextDatLink();
-		pPrevLink = link;
-		pCurrLink = link -> GetNextDatLink();
+			pCurrLink = pCurrLink -> GetNextDatLink();
+		pPrevLink = pCurrLink;
+		pCurrLink = pCurrLink -> GetNextDatLink();
 		CurrPos = pos;
 		return 0;
 	}
-    int TDatList :: GetCurrentPos ( void ) const       // получить номер тек. звена
+    int TDatList :: GetCurrentPos (void) const       // получить номер тек. звена
 	{
 		return CurrPos;
 	}
-    int TDatList :: Reset ( void ) { // установить на начало списка
+    int TDatList :: Reset (void) { // установить на начало списка
 		CurrPos = 0;
-		pCurrLink = pFirst;
+		pCurrLink = pFirst; 
 		pPrevLink = NULL;
 		return 0;
 	}
-	int TDatList :: IsListEnded ( void ) const { // список завершен ?
-		return (pCurrLink == pLast);
+	int TDatList :: IsListEnded (void) const { // список завершен ?
+		return (pCurrLink == pStop);
 	}
-    int TDatList :: GoNext ( void ) {                   // сдвиг вправо текущего звена
+    int TDatList :: GoNext (void) {                   // сдвиг вправо текущего звена
                 // (=1 после применения GoNext для последнего звена списка)
-		if (IsListEnded()) 
+		if (pCurrLink == pStop)  //уже в конце списка
 			return 1;
+		else if (pCurrLink == pLast) { //на последнем элементе
+			pPrevLink = NULL;
+			pCurrLink = pCurrLink -> GetNextDatLink(); //NULL
+			CurrPos = 0;
+		}
 		else {
 			pPrevLink = pCurrLink;
 			pCurrLink = pCurrLink -> GetNextDatLink();
@@ -80,49 +86,85 @@
 		}
 	}
     // вставка звеньев
-    void TDatList :: InsFirst  ( PTDatValue pVal=NULL ) { // перед первым
+    void TDatList :: InsFirst (PTDatValue pVal) { // перед первым
 		PTDatLink link = new TDatLink(pVal, pFirst);
-		pFirst = link;
-
-
-
+		if ((pFirst == pCurrLink)&&(pFirst != NULL)) {
+			pFirst = link;
+			pPrevLink = link;
+			pFirst -> SetNextLink(pCurrLink);
+		}
+		else {
+			PTDatLink p = pFirst;
+			pFirst = link;
+			if (pFirst != NULL) pFirst -> SetNextLink (p);
+		}
+		if (pLast == NULL) {
+			pLast = pFirst;
+			pLast->SetNextLink(pStop);
+		}
+		if (pCurrLink == NULL) {
+			pCurrLink = pFirst;
+		}
+		ListLen++;
 		CurrPos++;
-		
 	}
-    void TDatList :: InsLast   ( PTDatValue pVal=NULL ) { // вставить последним 
-		PTDatLink link = new TDatLink(pVal, pLast);
+    void TDatList :: InsLast (PTDatValue pVal) { // вставить последним 
+		PTDatLink link = new TDatLink(pVal, pStop);
+		if (pLast != NULL) pLast -> SetNextLink (link);
 		pLast = link;
-
-
-
-		CurrPos++;
+		pLast->SetNextLink(pStop);
+		if (pFirst == NULL) pFirst = pLast;
+		if (pCurrLink == NULL) {
+			pCurrLink = pLast;
+			CurrPos++;
+		}
+		ListLen++;
 	}
-    void TDatList :: InsCurrent( PTDatValue pVal=NULL ) { // перед текущим 
-		PTDatLink link = new TDatLink(pVal, pCurrLink);
-		pCurrLink = link;
-
-
-
-		CurrPos++;
+    void TDatList :: InsCurrent (PTDatValue pVal) { // перед текущим 
+		if ((pCurrLink == NULL)||(pPrevLink == NULL))
+			InsFirst (pVal);
+		else  {
+			PTDatLink link = new TDatLink(pVal, pCurrLink);
+			pPrevLink -> SetNextLink (link);
+			pPrevLink = link;
+			//pPrevLink -> SetNextLink (pCurrLink);
+			ListLen++;
+			CurrPos++;
+		}
+		
 	}
     // удаление звеньев
-    void TDatList :: DelFirst  ( void ) {    // удалить первое звено 
+    void TDatList :: DelFirst (void) {    // удалить первое звено 
 		if (pFirst == NULL) throw -1;
-
+		if (pFirst == pCurrLink) pCurrLink = NULL;
+		if (pFirst == pLast) pLast = NULL;
+		if (pFirst == pPrevLink) pPrevLink = NULL;
 		PTDatLink link = pFirst;
 		pFirst = pFirst -> GetNextDatLink();
-
-		
+		delete link;
+		ListLen--;
+		CurrPos--;
 	}
-    void TDatList :: DelCurrent( void ) {    // удалить текущее звено 
-		PTDatLink link = pCurrLink;
-		pCurrLink = pCurrLink -> GetNextDatLink();
-		DelLink (pCurrLink);
+    void TDatList :: DelCurrent (void) {    // удалить текущее звено 
+		if (pCurrLink == NULL) throw -1;
+		if (pCurrLink == pFirst) DelFirst();
+		else {
+			if (pCurrLink == pLast) {
+				pLast = pPrevLink;
+				pLast -> SetNextLink(pStop);
+			}
+			PTDatLink link = pCurrLink;
+			pCurrLink = pCurrLink -> GetNextDatLink();
+			pPrevLink -> SetNextLink(pCurrLink);
+			delete link;
+			if (pCurrLink == NULL) pPrevLink = NULL;
+			ListLen--;
+			CurrPos--;
+		}
 	}
-    void TDatList :: DelList   ( void ) {    // удалить весь список
+    void TDatList :: DelList (void) {    // удалить весь список
 		Reset();
 		for (int i=0; i<GetListLength(); i++) {
-			DelCurrent();
+			DelFirst();
 		}
-
 	}

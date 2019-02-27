@@ -3,7 +3,7 @@
 
 #include "DatLink.h"
 
-enum TLinkPos { FIRST, CURRENT, LAST };
+enum TLinkPos { BEGIN, CURRENT, END };
 
 class TDatList 
 {
@@ -28,7 +28,7 @@ class TDatList
     // навигация
     int SetCurrentPos ( int pos );          // установить текущее звено
     int GetCurrentPos ( void ) const;       // получить номер тек. звена
-    virtual int Reset ( void );             // установить на начало списка
+    virtual int Reset ( void );           // установить на начало списка
     virtual int IsListEnded ( void ) const; // список завершен ?
     int GoNext ( void );                    // сдвиг вправо текущего звена
                 // (=1 после применения GoNext для последнего звена списка)

@@ -14,7 +14,9 @@ class TDatLink : public TRootLink {
       TRootLink(pN) {
       pValue = pVal;
     }
-    void       SetDatValue ( PTDatValue pVal ) { pValue = pVal; }
+    void       SetDatValue ( PTDatValue pVal ) { 
+		pValue = pVal; 
+	}
     PTDatValue GetDatValue    () { return  pValue;           }
     PTDatLink  GetNextDatLink () { return  (PTDatLink)pNext; }
     friend class TDatList;
