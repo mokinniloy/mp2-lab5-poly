@@ -1,4 +1,6 @@
-class TRootLink;
+#include "DatValue.h"
+
+class TRootLink; //модуль базового класса для звеньев (элементов) списка
 typedef TRootLink *PTRootLink;
 
 class TRootLink {

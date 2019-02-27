@@ -1,3 +1,5 @@
+#include "DatList.h"
+
 class THeadRing : public TDatList{
   protected:
     PTDatLink pHead;     // заголовок, pFirst - звено за pHead

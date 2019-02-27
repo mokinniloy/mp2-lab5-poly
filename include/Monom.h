@@ -1,4 +1,9 @@
-class TMonom : public TDatValue  {     protected:
+class TMonom;
+typedef TMonom * PTMonom;
+
+class TMonom : public TDatValue  {
+
+  protected:
     int Coeff; // коэффициент монома
     int Index; // индекс (свертка степеней)
   public:
@@ -18,7 +23,7 @@ class TMonom : public TDatValue  {     protected:
       return (Coeff==tm.Coeff) && (Index==tm.Index);
     }
     int operator<(const TMonom &tm) {
-      return Index<tm.Index;
+      return Index<tm.Index; // а коэффициенты?
     }
     friend class TPolinom;
 };

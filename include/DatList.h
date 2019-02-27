@@ -1,4 +1,14 @@
-class TDatList : {
+#include "datacom.h"
+#include "DatLink.h"
+
+#define ListOK 0
+#define ListEmpty -101
+#define ListNoMem -102
+#define ListNoPos -103 // ошибочное положение текущего указателя
+
+enum TLinkPos {FIRST, CURRENT, LAST};
+
+class TDatList  {
   protected:
     PTDatLink pFirst;    // первое звено
     PTDatLink pLast;     // последнее звено

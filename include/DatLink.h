@@ -1,17 +1,19 @@
-class TDatLink;
+#include "RootLink.h"
+
+class TDatLink; // модуль класса для звеньев (элементов) списка с указателем на объект-значение
 typedef TDatLink *PTDatLink;
 
 class TDatLink : public TRootLink {
   protected:
-    PTDatValue pValue;  // указатель на объект значения
+    PTDatValue pValue;  // указатель на объект значения  // typedef TDatValue * PTDatValue
   public:
-    TDatLink ( PTDatValue pVal = NULL, PTRootLink pN = NULL ) :
-      TRootLink(pN) {
+    TDatLink ( PTDatValue pVal = NULL, PTRootLink pN = NULL ) : TRootLink(pN)
+    {
       pValue = pVal;
     }
     void       SetDatValue ( PTDatValue pVal ) { pValue = pVal; }
     PTDatValue GetDatValue    () { return  pValue;           }
-    PTDatLink  GetNextDatLink () { return  (PTDatLink)pNext; }
+    PTDatLink  GetNextDatLink () { return  (PTDatLink)pNext; }  // ?
     friend class TDatList;
 };
 
