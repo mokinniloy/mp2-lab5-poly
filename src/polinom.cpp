@@ -83,6 +83,24 @@ std::ostream& operator<<(std::ostream& os, TPolinom& q) {
 }
 
 std::istream& operator>>(std::istream& is, TPolinom& q) {
-    /// TODO
+    std::string str;
+    PTMonom pMonom;
+    while(getline(is, str)) {
+        char *s = (char *)str.c_str();
+        int coeff = 0;
+        bool m = (*s == '-');
+        if (m)
+            ++s;
+        while (*s >= '0' && *s <= '9') {
+            coeff *= 10;
+            coeff += *s - '0';
+            ++s;
+        }
+        if (m)
+            coeff *= -1;
+        int ind = 100 * (s[1] - '0') + 10 * (s[3] - '0') + (s[5] - '0');
+        pMonom = new TMonom(coeff, ind);
+        q.InsLast(pMonom);
+    }
     return is;
 }
