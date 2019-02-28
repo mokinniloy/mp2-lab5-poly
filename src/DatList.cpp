@@ -1,5 +1,8 @@
 #include "datlist.h"
 
+
+
+
 PTDatLink TDatList::GetLink(PTDatValue pVal, PTDatLink pLink) {
     PTDatLink tmp = new TDatLink(pVal, pLink);
     if(tmp == NULL)
@@ -41,7 +44,7 @@ int TDatList::GetCurrentPos() const {
     return CurrPos;
 }
 
-void TDatList::Reset() {//???
+void TDatList::Reset() {
     pPrevLink = pStop;
     if(IsEmpty()) {
         pCurrLink = pStop; CurrPos = -1;
@@ -146,9 +149,8 @@ void TDatList::DelCurrent() {
             pLast = pPrevLink;
             pCurrLink = pStop;
         }
-		else {
+		else
 			pCurrLink = pCurrLink->GetNextDatLink();
-		}
 		pPrevLink->SetNextLink(pCurrLink);
         DelLink(tmp);
         --ListLen;

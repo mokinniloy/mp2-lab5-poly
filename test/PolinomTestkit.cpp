@@ -1,4 +1,6 @@
 #include "polinom.h"
+#include "datlist.h"
+
 #include <gtest.h>
 
 #include <iostream>
@@ -123,4 +125,127 @@ TEST(TPolinom, plus_test_10) {
     TPolinom p1, p2, p3;
     p1+=p2;
     ASSERT_TRUE(p1 == p3);
+}
+
+TEST(TDatList, can_create_dat_list_object) {
+    ASSERT_NO_THROW(TDatList tmp);
+}
+
+TEST(TDatList, can_insert_first_several_times) {
+    TDatList List;
+    PTMonom p = new TMonom(5, 6);
+    ASSERT_NO_THROW(List.InsFirst(p));
+    ASSERT_NO_THROW(List.InsFirst(p));
+    delete p;
+}
+
+TEST(TDatList, can_insert_current_several_times) {
+    TDatList List;
+    PTMonom p = new TMonom(5, 6);
+    ASSERT_NO_THROW(List.InsCurrent(p));
+    ASSERT_NO_THROW(List.InsCurrent(p));
+    ASSERT_NO_THROW(List.InsCurrent(p));
+    ASSERT_NO_THROW(List.InsCurrent(p));
+    delete p;
+}
+
+TEST(TDatList, can_insert_last_several_times) {
+    TDatList List;
+    PTMonom p = new TMonom(5, 6);
+    ASSERT_NO_THROW(List.InsLast(p));
+    ASSERT_NO_THROW(List.InsLast(p));
+    delete p;
+}
+
+TEST(TDatList, can_delete_first_element_several_times) {
+    TDatList List;
+    PTMonom p = new TMonom(5, 6);
+    List.InsFirst(p);
+    List.InsFirst(p);
+    ASSERT_NO_THROW(List.DelFirst());
+    ASSERT_NO_THROW(List.DelFirst());
+    delete p;
+}
+
+TEST(TDatList, can_delete_current_element_several_times) {
+    TDatList List;
+    PTMonom p = new TMonom(5, 6);
+    List.InsFirst(p);
+    List.InsFirst(p);
+    ASSERT_NO_THROW(List.DelCurrent());
+    ASSERT_NO_THROW(List.DelCurrent());
+    delete p;
+}
+
+TEST(TDatList, cant_delete_from_empty_list) {
+    TDatList List;
+    ASSERT_ANY_THROW(List.DelFirst());
+    ASSERT_ANY_THROW(List.DelCurrent());
+}
+
+TEST(TDatList, list_len_is_changed_after_inserts_and_deletes) {
+    TDatList List;
+    PTMonom p = new TMonom(5, 6);
+    List.InsFirst(p);
+    ASSERT_TRUE(List.GetListLength() == 1);
+    List.InsLast(p);
+    ASSERT_TRUE(List.GetListLength() == 2);
+    List.InsCurrent(p);
+    ASSERT_TRUE(List.GetListLength() == 3);
+    List.DelFirst();
+    ASSERT_TRUE(List.GetListLength() == 2);
+    List.DelCurrent();
+    ASSERT_TRUE(List.GetListLength() == 1);
+}
+
+TEST(TDatList, list_del_function_is_correct) {
+    TDatList List;
+    PTMonom p = new TMonom(5, 6);
+    List.InsFirst(p);
+    List.InsLast(p);
+    List.InsCurrent(p);
+    List.DelList();
+    ASSERT_TRUE(List.GetListLength() == 0);
+    ASSERT_TRUE(List.GetDatValue() == NULL);
+    ASSERT_TRUE(List.GetCurrentPos() == -1);
+}
+
+TEST(TDatList, can_go_next) {
+    TDatList List;
+    PTMonom p = new TMonom(5, 6);
+    List.InsFirst(p);
+    List.InsFirst(p);
+    List.InsFirst(p);
+    List.Reset();
+    ASSERT_NO_THROW(List.GoNext());
+    ASSERT_TRUE(List.GetCurrentPos() == 1);
+}
+
+TEST(TDatList, cant_go_next_after_last_elem) {
+    TDatList List;
+    PTMonom p = new TMonom(5, 6);
+    List.InsFirst(p);
+    List.Reset();
+    List.GoNext();
+    ASSERT_ANY_THROW(List.GoNext());
+}
+
+TEST(TDatList, reset_function_is_correct) {
+    TDatList List;
+    PTMonom p = new TMonom(5, 6);
+    List.InsFirst(p);
+    List.Reset();
+    ASSERT_TRUE(List.GetCurrentPos() == 0);
+    List.DelFirst();
+    List.Reset();
+    ASSERT_TRUE(List.GetCurrentPos() == -1);
+}
+
+TEST(TDatList, is_list_ended_function_is_correct) {
+    TDatList List;
+    PTMonom p = new TMonom(5, 6);
+    List.InsFirst(p);
+    List.Reset();
+    List.GoNext();
+    ASSERT_TRUE(List.IsListEnded() == 1);
 }

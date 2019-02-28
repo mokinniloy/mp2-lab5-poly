@@ -94,14 +94,12 @@ bool TPolinom::operator !=(TPolinom& q) {
     return !(*this == q);
 }
 
-using namespace std;
-
-ostream& operator<<(ostream& out, TPolinom& p) {
+std::ostream& operator<<(std::ostream& out, TPolinom& p) {
     if(p.IsEmpty())
-        cout<<0;
+        std::cout<<0;
     for(p.Reset(); !p.IsListEnded(); p.GoNext()) {
         PTMonom pm = p.GetMonom();
-        cout<<"("<<pm->GetCoeff()<<", "<<pm->GetIndex()<<") ";
+        std::cout<<"("<<pm->GetCoeff()<<", "<<pm->GetIndex()<<") ";
     }
     return out;
 }
