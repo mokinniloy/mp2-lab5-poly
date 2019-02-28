@@ -1,7 +1,7 @@
 #include "polinom.h"
 #include "datlist.h"
 
-#include <gtest.h>
+#include "gtest.h"
 
 #include <iostream>
 using namespace std;
