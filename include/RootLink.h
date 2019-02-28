@@ -1,8 +1,8 @@
-#include <iostream>
-#include "datvalue.h"
-
 #ifndef __ROOTLINK_H__
 #define __ROOTLINK_H__
+
+#include <iostream>
+#include "DatValue.h"
 
 class TRootLink;
 typedef TRootLink *PTRootLink;

@@ -1,9 +1,9 @@
-#include "headring.h"
-#include "monom.h"
-#include <iostream>
-
 #ifndef __TPOLINOM_H__
 #define __TPOLINOM_H__
+
+#include "HeadRing.h"
+#include "Monom.h"
+#include <iostream>
 
 #define PolinomWrongIndex -104
 

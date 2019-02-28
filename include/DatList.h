@@ -1,8 +1,9 @@
-#include "datlink.h"
-#include "datvalue.h"
-
 #ifndef __TDATLIST_H__
 #define __TDATLIST_H__
+
+#include "DatLink.h"
+#include "DatValue.h"
+
 
 #define ListEmpty -101 // список пуст
 #define ListNoMem -102 // нет памяти

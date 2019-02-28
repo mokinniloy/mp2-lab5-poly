@@ -1,8 +1,8 @@
-#include <iostream>
-#include "datvalue.h"
-
 #ifndef __MONOM_H__
 #define __MONOM_H__
+
+#include <iostream>
+#include "DatValue.h"
 
 class TMonom : public TDatValue  {     protected:
     int Coeff; // коэффициент монома

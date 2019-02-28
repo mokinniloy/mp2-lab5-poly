@@ -1,7 +1,7 @@
-#include "datlist.h"
-
 #ifndef __THEADRING_H__
 #define __THEADRING_H__
+
+#include "DatList.h"
 
 class THeadRing : public TDatList{
   protected:

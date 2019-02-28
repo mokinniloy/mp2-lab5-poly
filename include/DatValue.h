@@ -1,7 +1,7 @@
-#include <iostream>
-
 #ifndef __DATVALUE_H__
 #define __DATVALUE_H__
+
+#include <iostream>
 
 class TDatValue {
   public:

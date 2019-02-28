@@ -1,10 +1,10 @@
-#include <iostream>
-
-#include "datvalue.h"
-#include "rootlink.h"
-
 #ifndef __DATLINK_H__
 #define __DATLINK_H__
+
+#include "DatValue.h"
+#include "RootLink.h"
+
+#include <iostream>
 
 class TDatLink;
 typedef TDatLink *PTDatLink;

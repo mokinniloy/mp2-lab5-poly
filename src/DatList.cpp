@@ -1,4 +1,4 @@
-#include "datlist.h"
+#include "DatList.h"
 
 
 
@@ -44,7 +44,7 @@ int TDatList::GetCurrentPos() const {
     return CurrPos;
 }
 
-void TDatList::Reset() {
+void TDatList::Reset() {//???
     pPrevLink = pStop;
     if(IsEmpty()) {
         pCurrLink = pStop; CurrPos = -1;
@@ -145,12 +145,7 @@ void TDatList::DelCurrent() {
     else {
         PTDatLink tmp = pCurrLink;
         //отработка ситуации удаления последнего звена
-        if(pCurrLink == pLast) {
-            pLast = pPrevLink;
-            pCurrLink = pStop;
-        }
-		else
-			pCurrLink = pCurrLink->GetNextDatLink();
+		pCurrLink = pCurrLink->GetNextDatLink();
 		pPrevLink->SetNextLink(pCurrLink);
         DelLink(tmp);
         --ListLen;
