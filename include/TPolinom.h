@@ -2,6 +2,7 @@
 #define __TPOLINOM__
 #include "THeadRing.h"
 #include "TMonom.h"
+#include <iostream>
 
 class TPolinom : public THeadRing {
   public:
@@ -11,6 +12,8 @@ class TPolinom : public THeadRing {
     PTMonom  GetMonom()  { return (PTMonom)GetDatValue(); }
     TPolinom & operator+( TPolinom &q); // сложение полиномов
     TPolinom & operator=( TPolinom &q); // присваивание
+
+    friend std::ostream& operator<<(std::ostream& out, TPolinom& q);
 };
 
 #endif // __TPOLINOM__

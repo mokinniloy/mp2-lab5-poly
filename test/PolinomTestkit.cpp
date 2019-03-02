@@ -111,31 +111,31 @@ TEST(TPolinom, create_object)
 
 TEST(TPolinom, create_not_empty)
 {
-    int n[][2] = {{1, 8}, {3, 105}};
+    int n[][2] = {{3, 105}, {1, 8}};
     EXPECT_NO_THROW(TPolinom a(n, 2));
 }
 
 TEST(TPolinom, created_is_equal_to_array)
 {
-    int n[][2] = {{1, 8}, {3, 105}};
+    int n[][2] = {{3, 105}, {1, 8}};
     TPolinom a(n, 2);
-    EXPECT_EQ(1, a.GetMonom()->GetCoeff());
-    EXPECT_EQ(8, a.GetMonom()->GetIndex());
-    a.GoNext();
     EXPECT_EQ(3, a.GetMonom()->GetCoeff());
     EXPECT_EQ(105, a.GetMonom()->GetIndex());
+    a.GoNext();
+    EXPECT_EQ(1, a.GetMonom()->GetCoeff());
+    EXPECT_EQ(8, a.GetMonom()->GetIndex());
 }
 
 TEST(TPolinom, create_polinom_from_other)
 {
-    int n[][2] = {{1, 8}, {3, 105}};
+    int n[][2] = {{3, 105}, {1, 8}};
     TPolinom a(n, 2);
     ASSERT_NO_THROW(TPolinom b=a);
 }
 
 TEST(TPolinom, copyed_polinom_equal_to_original)
 {
-    int n[][2] = {{1, 8}, {3, 105}};
+    int n[][2] = {{3, 105}, {1, 8}};
     TPolinom a(n, 2);
     TPolinom b(a);
     EXPECT_EQ(a.GetMonom()->GetCoeff(), b.GetMonom()->GetCoeff());
@@ -148,8 +148,8 @@ TEST(TPolinom, copyed_polinom_equal_to_original)
 
 TEST(TPolinom, can_add_polinoms)
 {
-    int n[][2] = {{1, 8}, {3, 105}};
-    int m[][2] = {{7, 4}, {43, 8}, {-6, 65}};
+    int n[][2] = {{3, 105}, {1, 8}};
+    int m[][2] = {{-6, 65}, {43, 8}, {7, 4}};
     TPolinom a(n, 2);
     TPolinom b(m, 3);
     ASSERT_NO_THROW(a + b);
@@ -157,9 +157,9 @@ TEST(TPolinom, can_add_polinoms)
 
 TEST(TPolinom, adding_polinoms_is_correct)
 {
-    int n[][2] = {{1, 8}, {3, 105}};
-    int m[][2] = {{7, 4}, {43, 8}, {-6, 65}};
-    int k[][2] = {{7, 4}, {44, 8}, {-6, 65}, {3, 105}};
+    int n[][2] = {{3, 105}, {1, 8}};
+    int m[][2] = {{-6, 65}, {43, 8}, {7, 4}};
+    int k[][2] = {{3, 105}, {-6, 65}, {44, 8}, {7, 4}};
     TPolinom a(n, 2);
     TPolinom b(m, 3);
     a + b;
@@ -175,8 +175,8 @@ TEST(TPolinom, adding_polinoms_is_correct)
 
 TEST(TPolinom, delete_0_value_coeff)
 {
-    int n[][2] = {{1, 8}, {3, 105}};
-    int m[][2] = {{7, 4}, {-1, 8}, {-6, 65}};
+    int n[][2] = {{3, 105}, {1, 8}};
+    int m[][2] = {{-6, 65}, {-1, 8}, {7, 4}};
     TPolinom a(n, 2);
     TPolinom b(m, 3);
     a + b;
@@ -185,8 +185,8 @@ TEST(TPolinom, delete_0_value_coeff)
 
 TEST(TPolinom, can_add_3_polinoms)
 {
-    int n[][2] = {{1, 8}, {3, 105}};
-    int m[][2] = {{7, 4}, {5, 8}, {-6, 65}};
+    int n[][2] = {{3, 105}, {1, 8}};
+    int m[][2] = {{-6, 65}, {5, 8}, {7, 4}};
     int k[][2] = {{-6, 8}};
     TPolinom a(n, 2);
     TPolinom b(m, 3);
@@ -196,8 +196,8 @@ TEST(TPolinom, can_add_3_polinoms)
 
 TEST(TPolinom, can_get_empty_polinom)
 {
-    int n[][2] = {{1, 8}, {3, 105}};
-    int m[][2] = {{-1, 8}, {-3, 105}};
+    int n[][2] = {{3, 105}, {1, 8}};
+    int m[][2] = {{-3, 105}, {-1, 8}};
     TPolinom a(n, 2);
     TPolinom b(m, 2);
     a + b;
@@ -206,7 +206,7 @@ TEST(TPolinom, can_get_empty_polinom)
 
 TEST(TPolinom, can_add_to_empty_polinom)
 {
-    int n[][2] = {{1, 8}, {3, 105}};
+    int n[][2] = {{3, 105}, {1, 8}};
     TPolinom a;
     TPolinom b(n, 2);
     EXPECT_NO_THROW(a + b);
@@ -215,7 +215,7 @@ TEST(TPolinom, can_add_to_empty_polinom)
 
 TEST(TPolinom, can_add_empty_polinom)
 {
-    int n[][2] = {{1, 8}, {3, 105}};
+    int n[][2] = {{3, 105}, {1, 8}};
     TPolinom a(n, 2);
     TPolinom b;
     EXPECT_NO_THROW(a + b);
@@ -224,8 +224,8 @@ TEST(TPolinom, can_add_empty_polinom)
 
 TEST(TPolinom, can_assign_other_value)
 {
-    int n[][2] = {{1, 8}, {3, 105}};
-    int m[][2] = {{7, 4}, {43, 8}, {-6, 65}};
+    int n[][2] = {{3, 105}, {1, 8}};
+    int m[][2] = {{-6, 65}, {43, 8}, {7, 4}};
     TPolinom a(n, 2);
     TPolinom b(m, 3);
     EXPECT_NO_THROW(a = b);

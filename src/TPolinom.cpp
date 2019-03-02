@@ -31,7 +31,7 @@ TPolinom& TPolinom::operator+(TPolinom& q)
     {
         if (*q.GetMonom() == *((PTMonom)q.pHead->GetDatValue()))
             break;
-        if (*q.GetMonom() < *GetMonom())
+        if (*GetMonom() < *q.GetMonom())
         {
             InsCurrent(q.GetMonom()->GetCopy());
             q.GoNext();
@@ -69,4 +69,36 @@ TPolinom& TPolinom::operator=( TPolinom &q)
     }
     SetCurrentPos(q.GetCurrentPos());
     return *this;
+}
+
+ostream& operator<<(ostream& out, TPolinom& q)
+{
+    if (q.GetListLength() == 0)
+    {
+        out << 0;
+        return out;
+    }
+    PTDatLink p = q.pFirst;
+    out << ((PTMonom)(p->GetDatValue()))->GetCoeff();
+    int i = ((PTMonom)(p->GetDatValue()))->GetIndex();
+    if (i / 100)
+        out << "*x" << i / 100;
+    if ((i / 10) % 10)
+        out << "*y" << (i / 10) % 10;
+    if (i % 10)
+        out << "*z" << i % 10;
+    p = p->GetNextDatLink();
+    while (p != q.pStop)
+    {
+        out << showpos << ((PTMonom)(p->GetDatValue()))->GetCoeff() << noshowpos;
+        i = ((PTMonom)(p->GetDatValue()))->GetIndex();
+        if (i / 100)
+            out << "*x" << i / 100;
+        if ((i / 10) % 10)
+            out << "*y" << (i / 10) % 10;
+        if (i % 10)
+            out << "*z" << i % 10;
+        p = p->GetNextDatLink();
+    }
+    return out;
 }
