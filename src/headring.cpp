@@ -19,7 +19,7 @@ THeadRing::~THeadRing()
     pHead = NULL;
 }
 
-void THeadRing::InsFirst(PTDatValue pVal = NULL)
+void THeadRing::InsFirst(PTDatValue pVal)
 {
     TDatList::InsFirst(pVal);
     pHead->SetNextLink(pFirst);

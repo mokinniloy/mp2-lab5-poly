@@ -1,6 +1,6 @@
 #include <monom.hpp>
 
-TMonom::TMonom(int cval = 1, int ival = 0)
+TMonom::TMonom(int cval, int ival)
 {
     Coeff = cval;
     Index = ival;

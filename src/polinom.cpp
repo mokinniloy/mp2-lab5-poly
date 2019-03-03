@@ -8,7 +8,7 @@
 
 #define TEMP_MONOM PTMonom tempMonom = new TMonom(-1, 0);
 
-TPolinom::TPolinom(int monoms[][2] = NULL, int monomCount = 0) : THeadRing()
+TPolinom::TPolinom(int monoms[][2], int monomCount) : THeadRing()
 {
     TEMP_MONOM
     pHead->SetDatValue(tempMonom);
@@ -36,15 +36,14 @@ TPolinom::TPolinom(TPolinom &source)
 TPolinom &TPolinom::operator=(TPolinom &source)
 {
     DelList();
-    TPolinom tempPolinom;
 
     for (source.Reset(); !source.IsListEnded(); source.GoNext())
     {
         PTMonom pMonom = source.GetMonom();
-        tempPolinom.InsLast(pMonom->GetCopy());
+        InsLast(pMonom->GetCopy());
     }
 
-    return tempPolinom;
+    return *this;
 }
 
 TPolinom &TPolinom::operator+(TPolinom &source)

@@ -18,7 +18,7 @@ TDatList::TDatList()
     Reset();
 }
 
-PTDatLink TDatList::GetLink(PTDatValue pVal = NULL, PTDatLink pLink = NULL)
+PTDatLink TDatList::GetLink(PTDatValue pVal, PTDatLink pLink)
 {
     GET_TEMP_LINK(pVal, pLink);
     if (tempLink == NULL) LINK_NO_MEM
@@ -36,7 +36,7 @@ void TDatList::DelLink(PTDatLink pLink)
     }
 }
 
-PTDatValue TDatList::GetDatValue(TLinkPos mode = CURRENT) const
+PTDatValue TDatList::GetDatValue(TLinkPos mode) const
 {
     switch (mode)
     {
@@ -61,6 +61,7 @@ int TDatList::SetCurrentPos(int pos)
     
     Reset();
     for (int i = 0; i < pos; i++, GoNext());
+    return CurrPos;
 }
 
 int TDatList::GetCurrentPos(void) const
@@ -81,7 +82,7 @@ int TDatList::Reset(void)
         pCurrLink = pFirst;
         CurrPos = 0;
     }
-    
+    return 1;
 }
 
 int TDatList::IsListEnded(void) const
@@ -102,7 +103,7 @@ int TDatList::GoNext(void)
     else return 0;
 }
 
-void TDatList::InsFirst(PTDatValue pVal = NULL)
+void TDatList::InsFirst(PTDatValue pVal)
 {
     GET_TEMP_LINK(pVal, pFirst);
     if (tempLink != NULL)
@@ -121,7 +122,7 @@ void TDatList::InsFirst(PTDatValue pVal = NULL)
     else LIST_NO_MEM
 }
 
-void TDatList::InsLast(PTDatValue pVal = NULL)
+void TDatList::InsLast(PTDatValue pVal)
 {
     GET_TEMP_LINK(pVal, pStop);
     if (tempLink != NULL)
@@ -142,7 +143,7 @@ void TDatList::InsLast(PTDatValue pVal = NULL)
         LIST_NO_MEM
 }
 
-void TDatList::InsCurrent(PTDatValue pVal = NULL)
+void TDatList::InsCurrent(PTDatValue pVal)
 {
     if (IsEmpty() || pCurrLink == pFirst) InsFirst(pVal);
     else if (IsListEnded()) InsLast(pVal);
