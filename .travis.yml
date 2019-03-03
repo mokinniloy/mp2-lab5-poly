@@ -5,7 +5,7 @@ compiler:
 before_script:
   - mkdir ../build
   - cd ../build
-  - sudo apt update && sudo apt upgrade
+  - sudo apt upgrade build-essential gcc g++ clang
 script:
   - cmake ../mp2-lab5-poly
   - make -j
