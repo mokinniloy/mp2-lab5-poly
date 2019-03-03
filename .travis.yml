@@ -1,10 +1,11 @@
 language: cpp
 compiler:
-  - gcc
+  - g++
   - clang
 before_script:
   - mkdir ../build
   - cd ../build
+  - sudo apt update && sudo apt upgrade
 script:
   - cmake ../mp2-lab5-poly
   - make -j

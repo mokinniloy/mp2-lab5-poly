@@ -102,6 +102,7 @@ std::istream &operator>>(std::istream &is, TPolinom &source)
     int power = 0;
 
     std::string polinom;
+    const char* powerStr;
 
     std::smatch monomMatches;
     std::smatch coefMatches;
@@ -119,7 +120,9 @@ std::istream &operator>>(std::istream &is, TPolinom &source)
     {
         std::regex_search(polinom, coefMatches, coefEx);
         coeff = atoi(coefMatches.str().c_str());
-        power = atoi(std::regex_replace(monomMatches.str(), powerSgn, "").c_str());
+
+        powerStr = std::regex_replace(monomMatches.str(), powerSgn, "").c_str();
+        power = atoi(powerStr);
 
         PTMonom tempMonom = new TMonom(coeff, power);
         source.InsLast(tempMonom);
