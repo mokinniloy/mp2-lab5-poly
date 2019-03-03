@@ -1,6 +1,7 @@
 #pragma once
 
 #include <datvalue.hpp>
+#include <iostream>
 
 class TMonom;
 typedef TMonom *PTMonom;
@@ -25,5 +26,7 @@ class TMonom : public TDatValue
     int operator==(const TMonom &tm);
     int operator<(const TMonom &tm);
 
+    friend void PrintPower(int pow, std::ostream &os, char var);
+    friend std::ostream &operator<<(std::ostream &os,const TMonom &monom);
     friend class TPolinom;
 };

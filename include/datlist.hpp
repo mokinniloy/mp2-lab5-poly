@@ -42,9 +42,9 @@ public:
                                        // (=1 после применения GoNext для последнего звена списка)
 
   // вставка звеньев
-  virtual void InsFirst(PTDatValue pVal = NULL);   // перед первым
+  virtual void InsFirst(PTDatValue pVal = NULL);   // вставить перед первым
   virtual void InsLast(PTDatValue pVal = NULL);    // вставить последним
-  virtual void InsCurrent(PTDatValue pVal = NULL); // после текущего
+  virtual void InsCurrent(PTDatValue pVal = NULL); // вставить перед текущим
 
   // удаление звеньев
   virtual void DelFirst(void);   // удалить первое звено
