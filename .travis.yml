@@ -1,11 +1,10 @@
 language: cpp
 compiler:
-  - g++ -fpermissive
+  - g++
   - clang
 before_script:
   - mkdir ../build
   - cd ../build
-  - sudo apt install clang-7 g++-8
 script:
   - cmake ../mp2-lab5-poly
   - make -j

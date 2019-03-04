@@ -102,14 +102,17 @@ std::istream &operator>>(std::istream &is, TPolinom &source)
     int power = 0;
 
     std::string polinom;
-    const char* powerStr;
+    std::string monom;
+    std::string powerStr;
 
     std::smatch monomMatches;
     std::smatch coefMatches;
 
-    std::regex powerSgn("[^2-9]");
-    std::regex coefEx("[1-9]{1,3}|[2-9]{1}");
-    std::regex monomEx("([a-z].[2-9]){3}"); //34x^5y^4z^8+321x^3y^9z^4
+    const std::regex yEx("[y]", std::regex_constants::extended);
+    const std::regex xEx("[x]", std::regex_constants::extended);
+    const std::regex powerEx("[^2-9]", std::regex_constants::extended);
+    const std::regex coefEx("[1-9]{1,3}|[2-9]{1}", std::regex_constants::extended);
+    const std::regex monomEx("([a-z].[1-9]){1,3}", std::regex_constants::extended); //34x^5y^4z^8+321x^3y^9z^4
 
     if (source.GetListLength() != 0) source.DelList();
     
@@ -121,8 +124,21 @@ std::istream &operator>>(std::istream &is, TPolinom &source)
         std::regex_search(polinom, coefMatches, coefEx);
         coeff = atoi(coefMatches.str().c_str());
 
-        powerStr = std::regex_replace(monomMatches.str(), powerSgn, "").c_str();
-        power = atoi(powerStr);
+        monom = monomMatches.str().c_str();
+        powerStr = std::regex_replace(monom, powerEx, "").c_str();
+
+        if (powerStr.length() == 2 
+            && std::regex_search(monom,*(new std::smatch), yEx))
+            power = atoi(powerStr.c_str()) * 10;
+        else if (powerStr.length() == 2)
+            power = atoi(powerStr.c_str()) / 10 * 100 + atoi(powerStr.c_str()) % 10;
+        else if (powerStr.length() == 1
+                 && std::regex_search(monom,*(new std::smatch), yEx))
+            power = atoi(powerStr.c_str()) * 10;
+        else if (powerStr.length() == 1
+                 && std::regex_search(monom,*(new std::smatch), xEx))
+            power = atoi(powerStr.c_str()) * 100;
+        else power = atoi(powerStr.c_str());
 
         PTMonom tempMonom = new TMonom(coeff, power);
         source.InsLast(tempMonom);
