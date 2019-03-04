@@ -6,7 +6,7 @@
 
 #define PWR_ERR throw new std::logic_error("Unexpected power.");
 
-#define TEMP_MONOM PTMonom tempMonom = new TMonom(-1, 0);
+#define TEMP_MONOM PTMonom tempMonom = new TMonom(0, -1);
 
 TPolinom::TPolinom(int monoms[][2], int monomCount) : THeadRing()
 {
@@ -28,8 +28,8 @@ TPolinom::TPolinom(TPolinom &source)
 
     for (source.Reset(); !source.IsListEnded(); source.GoNext())
     {
-        tempMonom = source.GetMonom();
-        InsLast(tempMonom->GetCopy());
+        PTMonom monom = source.GetMonom();
+        InsLast(monom->GetCopy());
     }
 }
 
