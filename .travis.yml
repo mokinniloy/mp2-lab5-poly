@@ -9,11 +9,13 @@ addons:
     - llvm-toolchain-trusty-7
     - george-edison55-precise-backports
     packages:
-    - gcc
-    - g++
-    - clang
+    - gcc-7
+    - g++-7
+    - clang-7
     - cmake
     - cmake-data
+    env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 before_script:
   - mkdir ../build
   - cd ../build
