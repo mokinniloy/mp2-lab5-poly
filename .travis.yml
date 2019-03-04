@@ -2,6 +2,15 @@ language: cpp
 compiler:
   - g++
   - clang
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    - llvm-toolchain-precise-7
+    packages:
+    - gcc-6
+    - g++-6
+    - clang-7
 before_script:
   - mkdir ../build
   - cd ../build
