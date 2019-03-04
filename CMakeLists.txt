@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3*)
 
 set(PROJECT_NAME poly)
 project(${PROJECT_NAME})
