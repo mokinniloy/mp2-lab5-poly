@@ -133,7 +133,7 @@ int TPolinom::CalculatePolynom(int x, int y, int z)
 		indexX = GetMonom()->Index / 100;
 		indexY = (GetMonom()->Index / 10) % 10;
 		indexZ = GetMonom()->Index % 10;
-		result += GetMonom()->Coeff * pow(x, indexX) * pow(y, indexY) * pow(z, indexZ);
+		result += GetMonom()->Coeff * std::pow(x, indexX) * std::pow(y, indexY) * std::pow(z, indexZ);
 	}
 
 	return result;
