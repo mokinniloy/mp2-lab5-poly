@@ -14,7 +14,6 @@ THeadRing::~THeadRing()
 {
 	TDatList::DelList();
 	DelLink(pHead);
-	pHead = nullptr;
 }
 
 void THeadRing::InsFirst(PTDatValue pVal)

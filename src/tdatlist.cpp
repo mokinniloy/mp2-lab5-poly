@@ -132,6 +132,7 @@ void TDatList::InsLast(PTDatValue pVal)
 void TDatList::InsCurrent(PTDatValue pVal)
 {
 	if (IsEmpty() || pCurrLink == pFirst) InsFirst(pVal);
+	else if (IsListEnded()) InsLast(pVal);
 	else if (pPrevLink == pStop) throw "ere";
 	else
 	{
@@ -158,9 +159,12 @@ void TDatList::DelFirst()
 			pLast = pStop;
 			Reset();
 		}
-		else if (CurrPos == 0) pCurrLink == pFirst;
-		else if (CurrPos == 1) pPrevLink == pStop;
-		if (CurrPos > 0) CurrPos--;
+		else if (CurrPos == 0) 
+			pCurrLink == pFirst;
+		else if (CurrPos == 1) 
+			pPrevLink == pStop;
+		if (CurrPos > 0) 
+			CurrPos--;
 	}
 }
 
@@ -172,15 +176,24 @@ void TDatList::DelCurrent()
 	{
 		// чето тут какая-то хуйня....
 		PTDatLink tmp = pCurrLink;
-		pCurrLink = pCurrLink->GetNextDatLink();
-		pPrevLink->SetNextLink(pCurrLink);
-		DelLink(tmp);
-		ListLen--;
-		if (pCurrLink == pLast)
+//////////////////////////////////////////////////////////////////////
+		if (pCurrLink == pLast)    ////
+		{						   ////
+			pLast = pPrevLink;	   ////
+			pCurrLink = pStop;	   ////
+		}						   ////
+///////////////////////////////////////////////////////////////////////
+		else {
+			pCurrLink = pCurrLink->GetNextDatLink();
+			pPrevLink->SetNextLink(pCurrLink);
+			DelLink(tmp);
+			ListLen--;
+		}
+/*		if (pCurrLink == pLast)
 		{
 			pLast = pPrevLink;
 			pCurrLink = pStop;
-		}
+		}*/
 	}
 }
 
