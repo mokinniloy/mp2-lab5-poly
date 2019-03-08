@@ -1,4 +1,4 @@
-#include "TRootLink.h";
+#include "TRootLink.h"
 
 void TRootLink::InsNextLink(PTRootLink pLink)
 {

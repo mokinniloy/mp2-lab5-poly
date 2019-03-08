@@ -1,4 +1,4 @@
-#include "TDatList.h";
+#include "TDatList.h"
 #include <iostream>
 using namespace std;
 TDatList::TDatList()

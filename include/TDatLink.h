@@ -1,7 +1,7 @@
 #ifndef __TDatLink_H
 #define __TDatLink_H
 
-#include "TRootLink.h";
+#include "TRootLink.h"
 class TDatLink;
 typedef TDatLink* PTDatLink;
 

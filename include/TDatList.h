@@ -1,7 +1,7 @@
 #ifndef __TDATLIST_H
 #define __TDATLIST_H
 
-#include "TDatLink.h";
+#include "TDatLink.h"
 
 enum TLinkPos
 {
