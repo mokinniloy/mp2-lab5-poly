@@ -215,10 +215,10 @@ TEST(Polinom,operator_plus_is_correct)
 	int ms2[][2] = { { 2,643 },{ 4,431 } };
 	int mn2 = sizeof(ms2) / (2 * sizeof(int));
 	Polinom q(ms2, mn2);
-	Polinom r = p + q;
 	int m[][2] = { {2,643},{1,543}, {3,432},{4,431}, {5,321} };
 	Polinom tmp(m, 5);
-	EXPECT_EQ(1, tmp == r);
+	p+=q;
+	EXPECT_EQ(1, tmp == q);
 }
 
 TEST(Polinom,operator_get_is_correct)
@@ -245,8 +245,9 @@ TEST(Polinom,operator_plusRavno_is_correct)
 	Polinom p(ms1, mn1);
 	int m[][2] = { {4,5} };
 	Polinom q(m, 1);
-	Polinom z;
-	z = p + q;
+	int e[][2] = {{ 1,543 },{ 3,432 },{ 5,321 },{4,5}};
+	Polinom z(e,4);
+	//z = p + q;
 	p += q;
 	EXPECT_EQ(1, z==p);
 }
@@ -265,8 +266,9 @@ TEST(Polinom, operator_plus_v_0)
 	int m1[][2] = { { -1,344 },{ 3,233 },{ -6,23 } };
 	Polinom a(m, 3);
 	Polinom b(m1, 3);
+	a+=b;
 	Polinom q;
-	EXPECT_EQ(1, q == a + b);
+	EXPECT_EQ(1, q == a);
 }
 TEST(Polinom,operator_plus_Ravno_2)
 {
@@ -275,5 +277,7 @@ TEST(Polinom,operator_plus_Ravno_2)
 	int m2[][2] = { { 3,33 }};
 	int m3[][2] = { { 1,344 },{6,342}, { -3,233 },{ 6,23 } };
 	Polinom a(m0, 3), b(m1, 2), c(m2, 1), d(m3, 4);
-	EXPECT_EQ(1, a + b == c + d);
+	a+=b;
+	c+=d;
+	EXPECT_EQ(1, a == c);
 }
