@@ -2,6 +2,8 @@
 #include "TDatList.h"
 #include <iostream>
 #include <vector>
+#include "stdlib.h"
+//#include "conio.h"
 #include <stdio.h>
 #include <string>
 #include "TPolinom.h"
@@ -74,7 +76,7 @@ int main()
 	PTMonom am,bm;
 	a.DelFirst();
 	cout<<a.GetMonom()->GetCaf();
-	/*am = a.GetMonom(); bm = b.GetMonom();
+	am = a.GetMonom(); bm = b.GetMonom();
 	cout << am->GetCaf()<<" "<<bm->GetCaf()<<endl;
 	am->SetCaf(0);
 	
@@ -82,7 +84,7 @@ int main()
 	b.GoNext();
 	am = a.GetMonom(); bm = b.GetMonom();
 	am->GetIndex();
-	//cout << am->GetCaf() << " " << bm->GetCaf();*/
+	//cout << am->GetCaf() << " " << bm->GetCaf();
 	//getch();
 	return 0;
 }
