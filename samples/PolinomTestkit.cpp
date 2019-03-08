@@ -2,7 +2,6 @@
 #include "TDatList.h"
 #include <iostream>
 #include <vector>
-#include "conio.h"
 #include <stdio.h>
 #include <string>
 #include "TPolinom.h"
@@ -84,6 +83,6 @@ int main()
 	am = a.GetMonom(); bm = b.GetMonom();
 	am->GetIndex();
 	//cout << am->GetCaf() << " " << bm->GetCaf();*/
-	getch();
+	//getch();
 	return 0;
 }
