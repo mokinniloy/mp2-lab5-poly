@@ -17,7 +17,7 @@ public:
 	int GetCaf() { return caf; }
 	void SetIndex(int a) { index = a; }
 	int GetIndex() { return index; }
-	TMonom& operator=(/*const*/ TMonom& t)
+	TMonom& operator=(const TMonom& t)
 	{
 		caf = t.caf;
 		index = t.index;

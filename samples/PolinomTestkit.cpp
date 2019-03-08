@@ -14,7 +14,7 @@ int main()
 {
 	// тестирование Листа
 	setlocale(LC_ALL, "Russian");
-	/*TDatList st;
+	TDatList st;
 	TMonom *pVal;
 	int temp;
 	cout << "Тестирование списка" << endl;
@@ -33,7 +33,7 @@ int main()
 	}
 	st.DelList();
 	cout << "Нажмите любую клавишу" << endl;
-	getch();*/
+	
 
 
 	// Тестирование полиномов
@@ -46,11 +46,12 @@ int main()
 	int mn2 = sizeof(ms2) / (2 * sizeof(int));
 	Polinom q(ms2, mn2);
 	cout << "2 полином " << endl << q;
-	Polinom r = p + q;
-	cout << "Полином результат " << endl<<r;
+	p += q;//Polinom r = p + q;
+	cout << "Полином результат " << endl<<p;
 	
 	cout << "--------------------------------" << endl;
-	auto f = freopen("file.txt", "r",stdin); // Ввод полиномов через файл
+	//getch();
+	/*auto f = freopen("file.txt", "r",stdin); // Ввод полиномов через файл
 	string s1,s2;
 	cout << "Введите полином 1 : " << endl;
 	Polinom p1,p2;
@@ -85,6 +86,6 @@ int main()
 	am = a.GetMonom(); bm = b.GetMonom();
 	am->GetIndex();
 	//cout << am->GetCaf() << " " << bm->GetCaf();
-	//getch();
+	getch();*/
 	return 0;
 }
