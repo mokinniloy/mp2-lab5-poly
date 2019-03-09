@@ -11,7 +11,7 @@ protected:
 public:
 	TMonom(int cval = 1, int ival = 0) {
 		Coeff = cval; Index = ival;
-	};
+	}
 	virtual TDatValue * GetCopy(); // изготовить копию
 	void SetCoeff(int cval) { Coeff = cval; }
 	int  GetCoeff(void) { return Coeff; }
@@ -33,5 +33,5 @@ public:
 	}
 	friend class TPolinom;
 };
-typedef TMonom *PTMonom
+typedef TMonom *PTMonom;
 #endif
