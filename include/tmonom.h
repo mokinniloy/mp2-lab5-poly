@@ -1,4 +1,6 @@
-//monom
+#ifndef __TMONOM_H
+#define __TMONOM_H
+
 #include <iostream>
 #include "tdatvalue.h"
 
@@ -32,3 +34,4 @@ public:
 	friend class TPolinom;
 };
 typedef TMonom *PTMonom
+#endif

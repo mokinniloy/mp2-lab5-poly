@@ -1,7 +1,7 @@
+#ifndef __DATLIST_H
+#define __DATLIST_H
 #include "tdatlink.h"
 
-class TDatList;
-typedef TDatList *PTDatList;
 
 enum TLinkPos{FIRST, CURRENT, LAST};
 
@@ -15,7 +15,7 @@ protected:
 	int CurrPos;         // номер текущего звена (нумерация от 0)
 	int ListLen;         // количество звеньев в списке
 protected:  // методы
-	PTDatLink GetLink(PTDatValue pVal = NULL, PTDatLink pLink = NULL);
+	PTDatLink GetLink(PTDatValue pVal = nullptr, PTDatLink pLink = nullptr);
 	void      DelLink(PTDatLink pLink);   // удаление звена
 public:
 	TDatList();
@@ -32,12 +32,12 @@ public:
 	void GoNext(void);                    // сдвиг вправо текущего звена
 				// (=1 после применения GoNext для последнего звена списка)
 	// вставка звеньев
-	virtual void InsFirst(PTDatValue pVal = NULL); // перед первым
-	virtual void InsLast(PTDatValue pVal = NULL); // вставить последним 
-	virtual void InsCurrent(PTDatValue pVal = NULL); // перед текущим 
+	virtual void InsFirst(PTDatValue pVal = nullptr); // перед первым
+	virtual void InsLast(PTDatValue pVal = nullptr); // вставить последним 
+	virtual void InsCurrent(PTDatValue pVal = nullptr); // перед текущим 
 	// удаление звеньев
 	virtual void DelFirst(void);    // удалить первое звено 
 	virtual void DelCurrent(void);    // удалить текущее звено 
 	virtual void DelList(void);    // удалить весь список
 };
-
+#endif

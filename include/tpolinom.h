@@ -1,3 +1,7 @@
+#ifndef __POLINOM_H
+#define __POLINOM_H
+#include <iostream>
+#include"tdatvalue.h"
 #include "tmonom.h"
 #include "theadring.h"
 
@@ -9,5 +13,6 @@ public:
 	PTMonom  GetMonom() { return (PTMonom)GetDatValue(); }
 	TPolinom & operator+=(TPolinom &q); // сложение полиномов
 	TPolinom & operator=(TPolinom &q); // присваивание
+	friend std::ostream& operator<<(std::ostream &os, TPolinom & q);
 };
-
+#endif
