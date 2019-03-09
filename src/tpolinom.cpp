@@ -1,3 +1,4 @@
+#include <iostream>
 #include "tpolinom.h"
 
 TPolinom::TPolinom(int monoms[][2], int km)
@@ -43,4 +44,25 @@ TPolinom & TPolinom::operator += (TPolinom& q)
 	return *this;
 }
 
+TPolinom::TPolinom(TPolinom& q)
+{
+	PTMonom pMonom = new TMonom(0, -1);
+	pHead->SetDatValue(pMonom);
+	for (q.Reset(); !q.IsListEnded(); q.GoNext())
+	{
+		PTMonom pMonom = q.GetMonom();
+		InsLast(pMonom->GetCopy());
+	}
+}
+
+TPolinom & TPolinom::operator=(TPolinom & q)
+{
+	DelList();
+	for (q.Reset(); !q.IsListEnded(); q.GoNext())
+	{
+		PTMonom pMonom = q.GetMonom();
+		InsLast(pMonom->GetCopy());
+	}
+	return *this;
+}
 
