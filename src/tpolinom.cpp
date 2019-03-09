@@ -66,3 +66,9 @@ TPolinom & TPolinom::operator=(TPolinom & q)
 	return *this;
 }
 
+std::ostream& operator<<(std::ostream &os, TPolinom & q)
+{
+	for (q.Reset(); !q.IsListEnded(); q.GoNext())
+		std::cout << *q.GetMonom() << std::endl;
+	return os;
+}

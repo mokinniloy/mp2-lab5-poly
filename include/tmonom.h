@@ -25,6 +25,10 @@ public:
 	int operator<(const TMonom &tm) {
 		return Index < tm.Index;
 	}
+	friend std::ostream& operator<<(std::ostream& os, TMonom &tm) {
+		os << tm.Coeff << " " << tm.Index;
+		return os;
+	}
 	friend class TPolinom;
 };
 typedef TMonom *PTMonom
