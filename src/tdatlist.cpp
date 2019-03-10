@@ -156,6 +156,7 @@ void TDatList::DelFirst()
 		PTDatLink tmp = pFirst;
 		pFirst = pFirst->GetNextDatLink();
 		DelLink(tmp);
+		--ListLen;
 		if (IsEmpty())
 		{
 			pLast = pStop;
