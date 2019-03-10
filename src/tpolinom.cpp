@@ -27,18 +27,23 @@ TPolinom & TPolinom::operator += (TPolinom& q)
 			rm = new TMonom(qm->Coeff, qm->Index);
 			InsCurrent(rm); q.GoNext();
 		}
-		else if (pm->Coeff > qm->Coeff)
+		else if (pm->Index > qm->Index)
 			GoNext();
 		else 
 		{
 			if (pm->Index == -1)
 				break;
 			pm->Coeff += qm->Coeff;
-			if (pm->Coeff != 0)
+			if (pm->Coeff != 0) 
+			{
 				GoNext();
-			else
+				q.GoNext();
+			}
+			else 
+			{
 				DelCurrent();
-			q.GoNext();
+				q.GoNext();
+			}
 		}
 	}
 	return *this;
@@ -71,4 +76,23 @@ std::ostream& operator<<(std::ostream &os, TPolinom & q)
 	for (q.Reset(); !q.IsListEnded(); q.GoNext())
 		std::cout << *q.GetMonom() << std::endl;
 	return os;
+}
+
+bool TPolinom::operator==(TPolinom &q) 
+{
+	this->Reset();
+	q.Reset();
+	while (1) 
+	{
+		if (this->IsListEnded() || q.IsListEnded()) 
+		{
+			if (this->IsListEnded() && q.IsListEnded())
+				return true;
+			return false;
+		}
+		if (!(*this->GetMonom() == *q.GetMonom()))
+			return false;
+		this->GoNext();
+		q.GoNext();
+	}
 }

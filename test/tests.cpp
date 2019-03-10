@@ -140,3 +140,53 @@ TEST(TDatList, can_set_current_position)
 
 	EXPECT_EQ(1, t.GetCurrentPos());
 }
+
+TEST(TPolinom, can_create_polinom)
+{
+	int mon[][2] = { {2,1}, {1,2} };
+	int k = 2;
+
+	ASSERT_NO_THROW(TPolinom m(mon, k));
+}
+
+TEST(TPolinom, can_assign)
+{
+	int mon[][2] = { {2,1}, {1,2} };
+	int k = 2;
+	TPolinom p1(mon, k);
+
+	ASSERT_NO_THROW(TPolinom p2 = p1);
+}
+
+TEST(TPolinom, equal_polinoms_are_equal)
+{
+	int mon[][2] = { {2,1}, {1,2} };
+	int k = 2;
+	TPolinom p1(mon, k), p2(mon, k);
+
+	EXPECT_EQ(true, p1 == p2);
+}
+
+TEST(TPolinom, can_add)
+{
+	int mon1[][2] = { {1, 543}, {3, 432}, {5, 321}, {7, 210} };
+	int mon2[][2] = { {2, 643}, {4, 431}, {-5, 321}, {8, 110}, {3, 60} };
+	int mon3[][2] = { {2, 643}, {1, 543}, {3, 432}, {4, 431}, {7, 210}, {8, 110}, {3, 60} };
+	TPolinom p1(mon1, 4);
+	TPolinom p2(mon2, 5);
+	TPolinom p3(mon3, 7);
+	p1 += p2;
+	ASSERT_TRUE(p3 == p1);
+}
+
+TEST(Tpolinom, can_add2)
+{
+	int mon1[][2] = { {1, 543}, {3, 432}, {5, 321}, {7, 210} };
+	int mon2[][2] = { {2, 643}, {4, 431}, {-5, 321}, {8, 110}, {3, 60} };
+	int mon3[][2] = { {2, 643}, {1, 543}, {3, 432}, {4, 431}};
+	TPolinom p1(mon1, 4);
+	TPolinom p2(mon2, 5);
+	TPolinom p3(mon3, 4);
+	p1 += p2;
+	ASSERT_FALSE(p3 == p1);
+}
