@@ -1,9 +1,24 @@
 #include "tdatlist.h"
 
+void TDatList::Reset()
+{
+	pPrevLink = pStop;
+	if (IsEmpty())
+	{
+		pCurrLink = pStop;
+		CurrPos = -1;
+	}
+	else
+	{
+		pCurrLink = pFirst;
+		CurrPos = 0;
+	}
+}
+
 TDatList::TDatList()
 {
-	pFirst = pLast = pCurrLink = nullptr;
-	ListLen = 0;
+	pFirst = pLast = pStop = nullptr;
+	ListLen = 0; 
 	Reset();
 }
 
@@ -23,7 +38,7 @@ void TDatList::DelLink(PTDatLink pLink)
 			delete pLink->pValue;
 		delete pLink;
 	}
-	//SetRetCode(ListOK);
+	
 }
 
 /// методы доступа
@@ -54,20 +69,7 @@ int TDatList::GetCurrentPos() const
 	return CurrPos;
 }
 
-void TDatList::Reset()
-{
-	pPrevLink = pStop;
-	if (IsEmpty())
-	{
-		pCurrLink = pStop;
-		CurrPos = -1;
-	}
-	else
-	{
-		pCurrLink = pStop;
-		CurrPos = 0;
-	}
-}
+
 
 void TDatList::GoNext()
 {
