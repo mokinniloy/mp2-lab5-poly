@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNING
 #include "Polynom.h"
-#include <gtest/gtest.h>
+#include <gtest.h>
 #include <iostream>
 
 TEST(TDatLink, can_create_link)
