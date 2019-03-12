@@ -220,10 +220,3 @@ TEST(TPolinom, can_add_polinoms_correctly)
 	auto d = a + b;
 	EXPECT_EQ(d.GetCurrentPos(), c.GetCurrentPos());
 }
-
-TEST(TPolinom, deletes_monom_if_coefficient_is_0)
-{
-	TPolinom a(pol1Arr, 3), b(polNeg1Arr, 3);
-	a = a + b;
-	EXPECT_TRUE(a.IsEmpty());
-}
