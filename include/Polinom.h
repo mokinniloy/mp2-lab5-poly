@@ -8,12 +8,12 @@ using namespace std;
 
 class TPolinom : public THeadRing {
 public:
-	TPolinom(int monoms[][2] = nullptr, int km = 0); // конструктор
-												  // полинома из массива «коэффициент-индекс»
-	TPolinom(const TPolinom &q);      // конструктор копирования
+	TPolinom(int monoms[][2] = nullptr, int km = 0); // ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г°
+												  // ГЇГ®Г«ГЁГ­Г®Г¬Г  ГЁГ§ Г¬Г Г±Г±ГЁГўГ  В«ГЄГ®ГЅГґГґГЁГ¶ГЁГҐГ­ГІ-ГЁГ­Г¤ГҐГЄГ±В»
+	TPolinom(const TPolinom &q);      // ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г° ГЄГ®ГЇГЁГ°Г®ГўГ Г­ГЁГї
 	PTMonom  GetMonom() { return (PTMonom)GetDatValue(); }
-	TPolinom operator+(TPolinom &q); // сложение полиномов
-	TPolinom & operator=(TPolinom &q); // присваивание
+	TPolinom& operator+(TPolinom &q); // Г±Г«Г®Г¦ГҐГ­ГЁГҐ ГЇГ®Г«ГЁГ­Г®Г¬Г®Гў
+	TPolinom& operator=(TPolinom &q); // ГЇГ°ГЁГ±ГўГ ГЁГўГ Г­ГЁГҐ
 
 	friend ostream& operator<<(ostream &out, TPolinom &p);
 };
