@@ -14,7 +14,8 @@ public:
 	PTMonom  GetMonom() { return (PTMonom)GetDatValue(); }
 	TPolinom& operator+(TPolinom &q); // ñëîæåíèå ïîëèíîìîâ
 	TPolinom& operator=(TPolinom &q); // ïðèñâàèâàíèå
-
+	TPolinom& operator+=(TPolinom &q); // сложение полиномов с присваиванием
+	
 	friend ostream& operator<<(ostream &out, TPolinom &p);
 };
 
