@@ -26,7 +26,7 @@ TPolinom::TPolinom(const TPolinom &q)
 	}
 }
 
-TPolinom TPolinom::operator+(TPolinom &q)
+TPolinom& TPolinom::operator+(TPolinom &q)
 {
 	TPolinom res(*this);
 	res.Reset(); 
@@ -61,7 +61,7 @@ TPolinom TPolinom::operator+(TPolinom &q)
 			}
 		}
 	}
-	return res;
+	return *this;
 }
 
 TPolinom& TPolinom::operator=(TPolinom &q)
