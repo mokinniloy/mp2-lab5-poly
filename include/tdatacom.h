@@ -5,6 +5,7 @@
 //
 // Обработка кодов завершения
 
+#pragma once
 #ifndef __DATACOM_H__
 #define __DATACOM_H__
 

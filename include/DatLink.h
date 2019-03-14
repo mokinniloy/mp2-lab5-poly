@@ -1,3 +1,4 @@
+#pragma once
 #include "RootLink.h"
 
 class TDatLink; // модуль класса для звеньев (элементов) списка с указателем на объект-значение
@@ -13,7 +14,7 @@ class TDatLink : public TRootLink {
     }
     void       SetDatValue ( PTDatValue pVal ) { pValue = pVal; }
     PTDatValue GetDatValue    () { return  pValue;           }
-    PTDatLink  GetNextDatLink () { return  (PTDatLink)pNext; }  // ?
+    PTDatLink  GetNextDatLink () { return  (PTDatLink)pNext; }  
     friend class TDatList;
 };
 

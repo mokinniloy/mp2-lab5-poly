@@ -1,3 +1,4 @@
+#pragma once
 #include "DatList.h"
 
 class THeadRing : public TDatList{

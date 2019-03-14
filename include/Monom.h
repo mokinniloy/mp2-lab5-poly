@@ -1,3 +1,5 @@
+#pragma once
+#include "DatValue.h"
 class TMonom;
 typedef TMonom * PTMonom;
 
@@ -10,7 +12,10 @@ class TMonom : public TDatValue  {
     TMonom ( int cval=1, int ival=0 ) {
       Coeff=cval; Index=ival;
     };
-    virtual TDatValue * GetCopy(); // изготовить копию
+	virtual TDatValue * GetCopy() { // изготовить копию
+		PTDatValue tmp = new TMonom(Coeff, Index);
+		return tmp;
+	}
     void SetCoeff(int cval) { Coeff=cval;   }
     int  GetCoeff(void)     { return Coeff; }
     void SetIndex(int ival) { Index=ival;   }
@@ -24,6 +29,10 @@ class TMonom : public TDatValue  {
     }
     int operator<(const TMonom &tm) {
       return Index<tm.Index; // а коэффициенты?
+    }
+    friend std::ostream& operator<<(ostream & os, TMonom &tm) { 
+      std::cout << "Coeff = " << tm.Coeff << ", Index = " << tm.Index << "; " << endl;
+      return os;
     }
     friend class TPolinom;
 };

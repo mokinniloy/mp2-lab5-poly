@@ -1,3 +1,4 @@
+#pragma once
 #include "DatValue.h"
 
 class TRootLink; //модуль базового класса для звеньев (элементов) списка

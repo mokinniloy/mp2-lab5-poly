@@ -22,7 +22,7 @@ void TDatList::DelLink (PTDatLink pLink)
 {
     if (pLink != NULL)
     {
-        if (pLink->Value != NULL)
+        if (pLink->pValue != NULL)
             delete pLink;
     }
     SetRetCode(ListOK);
@@ -58,7 +58,7 @@ int TDatList::GetCurrentPos (void) const // получить номер текущего звена
 
 int TDatList::Reset (void) // установить на начало списка
 {
-    pPrevLink = pStop;
+    pPrevLink = pStop; 
     if (IsEmpty())
     {
         pCurrLink = pStop;
@@ -74,7 +74,7 @@ int TDatList::Reset (void) // установить на начало списка
     return RetCode;
 }
 
-int TDatList::GoNext(void) // сдвиг вправо текущего звена
+int TDatList::GoNext(void) // сдвиг вправо текущего звена   // а вернуть 1 при сдвиге последнего звена?
 {
     if (pCurrLink == pStop)
         SetRetCode(ListNoPos);
@@ -97,7 +97,7 @@ int TDatList::IsListEnded (void) const // =1 после применения GoNext для последн
 
 void TDatList::InsFirst (PTDatValue pVal) // перед первым
 {
-    PTDatLink temp = GetLink(PVal, pFirst);
+    PTDatLink temp = GetLink(pVal, pFirst);
     if (temp == NULL)
         SetRetCode(ListNoMem);
     else   
@@ -203,15 +203,15 @@ void TDatList::DelCurrent (void)
     else
     {
         PTDatLink temp = pCurrLink;
-        pCurrLink = pCurrLink->GetNextDatLink();
+        pCurrLink = pCurrLink->GetNextDatLink(); // !
         pPrevLink->SetNextLink(pCurrLink);
         DelLink(temp);
         ListLen--;
         // обработка ситуации удаления последнего звена
-        if (pCurrLink == pLast)
+        if (pCurrLink == pLast)   // ??? 
         {
             pLast = pPrevLink;
-            pCurrLink = pStop;
+            pCurrLink = pStop; // ? почему pStop, а не pPrevLink?
         }
         SetRetCode(ListOK);
     }

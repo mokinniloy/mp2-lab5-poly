@@ -1,4 +1,5 @@
-#include "datacom.h"
+#pragma once
+#include "tdatacom.h"
 #include "DatLink.h"
 
 #define ListOK 0
@@ -8,7 +9,7 @@
 
 enum TLinkPos {FIRST, CURRENT, LAST};
 
-class TDatList  {
+class TDatList : public TDataCom {
   protected:
     PTDatLink pFirst;    // первое звено
     PTDatLink pLast;     // последнее звено
