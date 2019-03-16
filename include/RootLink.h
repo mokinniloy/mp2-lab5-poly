@@ -1,4 +1,4 @@
-#ifndef __TROOTLINK_H__
+ï»¿#ifndef __TROOTLINK_H__
 #define __TROOTLINK_H__
 
 #include <iostream>
@@ -9,19 +9,22 @@ typedef TRootLink *PTRootLink;
 
 class TRootLink {
   protected:
-    PTRootLink  pNext;  // óêàçàòåëü íà ñëåäóþùåå çâåíî
+    PTRootLink  pNext;  // ÑƒÐºÐ°Ð·Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ð° ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐµ Ð·Ð²ÐµÐ½Ð¾
   public:
-    TRootLink ( PTRootLink pN = NULL ) { pNext = pN; }
+    TRootLink ( PTRootLink pN = nullptr ) { pNext = pN; }
     PTRootLink  GetNextLink () { return  pNext; }
-    void SetNextLink ( PTRootLink  pLink ) { pNext  = pLink; } //óñòàíîâèòü
-    void InsNextLink ( PTRootLink  pLink ) { //äîáàâèòü
+    void SetNextLink ( PTRootLink  pLink ) { pNext  = pLink; } //ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ
+    void InsNextLink ( PTRootLink  pLink ) { //Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ
       PTRootLink p = pNext;  pNext  = pLink;
-      if ( pLink != NULL ) pLink->pNext = p;
+      if ( pLink != nullptr ) pLink->pNext = p;
     }
     virtual void       SetDatValue ( PTDatValue pVal ) = 0;
     virtual PTDatValue GetDatValue ()                  = 0;
 
-    friend class TDatValue;
+	friend class TDatList;
 };
 
 #endif //__TROOTLINK_H__
+
+
+

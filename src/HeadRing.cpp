@@ -1,14 +1,19 @@
 #include "HeadRing.h"
 
 
-THeadRing :: THeadRing () : TDatList() {
-	pHead = NULL;
+THeadRing :: THeadRing () : TDatList () {
+	InsLast();
+	pHead = pFirst;
+	pStop = pHead;
+	Reset();
+	pFirst -> SetNextLink(pFirst);
+	ListLen = 0;
 }
 
 THeadRing :: ~THeadRing () {
 	TDatList :: DelList();
 	DelLink (pHead);
-	pHead = NULL;
+	pHead = nullptr;
 }
    // вставка звеньев
 void THeadRing :: InsFirst (PTDatValue pVal) { // после заголовка
@@ -20,3 +25,4 @@ void THeadRing :: DelFirst (void) {                // удалить первое звено
 	TDatList :: DelFirst ();
 	pHead -> SetNextLink (pFirst);
 }
+

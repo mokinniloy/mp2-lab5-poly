@@ -1,4 +1,4 @@
-
+п»ї
 #ifndef __TMONOM_H__
 #define __TMONOM_H__
 
@@ -9,13 +9,13 @@ class TMonom;
 typedef TMonom *PTMonom;
 
 class TMonom : public TDatValue  {     protected:
-    int Coeff; // коэффициент монома
-    int Index; // индекс (свертка степеней)
+    int Coeff; // РєРѕСЌС„С„РёС†РёРµРЅС‚ РјРѕРЅРѕРјР°
+    int Index; // РёРЅРґРµРєСЃ (СЃРІРµСЂС‚РєР° СЃС‚РµРїРµРЅРµР№)
   public:
     TMonom ( int cval=1, int ival=0 ) {
       Coeff = cval; Index = ival; 
     };
-    virtual PTDatValue GetCopy(); // изготовить копию
+    virtual PTDatValue GetCopy(); // РёР·РіРѕС‚РѕРІРёС‚СЊ РєРѕРїРёСЋ
     void SetCoeff(int cval) { Coeff = cval;   }
     int  GetCoeff(void)     { return Coeff; }
     void SetIndex(int ival) { Index = ival;   }
@@ -39,4 +39,6 @@ class TMonom : public TDatValue  {     protected:
     friend class TPolinom;
 };
 
-#endif
+#endif //__TMONOM_H__
+
+

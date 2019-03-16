@@ -1,4 +1,4 @@
-#ifndef __TDATLINK_H__
+п»ї#ifndef __TDATLINK_H__
 #define __TDATLINK_H__
 
 #include "RootLink.h"
@@ -8,9 +8,9 @@ typedef TDatLink *PTDatLink;
 
 class TDatLink : public TRootLink {
   protected:
-    PTDatValue pValue;  // указатель на объект значения
+    PTDatValue pValue;  // СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЉРµРєС‚ Р·РЅР°С‡РµРЅРёСЏ
   public:
-    TDatLink ( PTDatValue pVal = NULL, PTRootLink pN = NULL ) :
+    TDatLink ( PTDatValue pVal = nullptr, PTRootLink pN = nullptr ) :
       TRootLink(pN) {
       pValue = pVal;
     }
@@ -22,4 +22,7 @@ class TDatLink : public TRootLink {
     friend class TDatList;
 };
 
-#endif //__TDATLINK_H__
+#endif
+
+
+

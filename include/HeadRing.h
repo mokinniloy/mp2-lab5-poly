@@ -12,7 +12,7 @@ class THeadRing : public TDatList
     THeadRing ();
    ~THeadRing ();
    // вставка звеньев
-    virtual void InsFirst( PTDatValue pVal = NULL ); // после заголовка
+    virtual void InsFirst( PTDatValue pVal = nullptr ); // после заголовка
     // удаление звеньев
     virtual void DelFirst( void );                 // удалить первое звено
 };
