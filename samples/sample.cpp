@@ -2,7 +2,6 @@
 #include "DatList.h"
 #include "Polinom.h"
 #include <iostream>
-#include <conio.h>
 
 using namespace std;
 
@@ -17,7 +16,7 @@ int main ()
 		st.TDatList::InsLast(pVal);
 		cout<<"Put in list value "<<pVal->GetCoeff()<<"; "<<pVal->GetIndex()<<endl;
 	}
-	//Ïå÷àòü ñïèñêà
+	//ÃÃ¥Ã·Ã Ã²Ã¼ Ã±Ã¯Ã¨Ã±ÃªÃ 
 	for (st.Reset(); !st.IsListEnded(); st.GoNext()) {
 		pVal = (TMonom*)st.GetDatValue();
 		cout<<"Get of list value "<<pVal->GetCoeff()<<"; "<<pVal->GetIndex()<<endl;
