@@ -276,7 +276,7 @@ TEST(TPolinom, can_add_polinoms)
 	TPolinom q(ms2, 2);
 	int ms[][2] = {{2,666}, {1,555}, {3,444}, {4,333}, {5,222}};
 	TPolinom tmp(ms, 5);
-	p = q + p;
+	q += p;
 
 	EXPECT_EQ(true, tmp == q);
 }
@@ -307,7 +307,7 @@ TEST(TPolinom, can_add_polinoms_2)
 	int m1[][2] = {{-1,543}, {2,333}, {5,11}};
 	TPolinom p1(m, 3);
 	TPolinom p2(m1, 3);
-	p1 = p1 + p2;
+	p1 += p2;
 	TPolinom res;
 
 	EXPECT_EQ(true, res == p1);
