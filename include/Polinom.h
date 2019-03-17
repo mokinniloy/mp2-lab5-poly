@@ -7,12 +7,13 @@
 
 class TPolinom : public THeadRing {
   public:
-    TPolinom ( int monoms[][2]=nullptr, int km=0 ); // конструктор
-                     // полинома из массива «коэффициент-индекс»
-    TPolinom (TPolinom &q);      // конструктор копирования
+    TPolinom ( int monoms[][2]=nullptr, int km=0 ); // ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г°
+                     // ГЇГ®Г«ГЁГ­Г®Г¬Г  ГЁГ§ Г¬Г Г±Г±ГЁГўГ  В«ГЄГ®ГЅГґГґГЁГ¶ГЁГҐГ­ГІ-ГЁГ­Г¤ГҐГЄГ±В»
+    TPolinom (TPolinom &q);      // ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г° ГЄГ®ГЇГЁГ°Г®ГўГ Г­ГЁГї
     PTMonom  GetMonom() const { return (PTMonom) GetDatValue(); }
-    TPolinom operator+( TPolinom &q); // сложение полиномов
-    TPolinom & operator=( TPolinom &q); // присваивание
+    TPolinom operator+( TPolinom &q); // Г±Г«Г®Г¦ГҐГ­ГЁГҐ ГЇГ®Г«ГЁГ­Г®Г¬Г®Гў
+    TPolinom & operator+=(TPolinom& q);
+    TPolinom & operator=( TPolinom &q); // ГЇГ°ГЁГ±ГўГ ГЁГўГ Г­ГЁГҐ
 	bool operator==(TPolinom &q); 
     bool operator!=(TPolinom &q); 
 	friend std::ostream& operator<< (std::ostream &os, TPolinom &q);
