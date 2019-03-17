@@ -57,6 +57,44 @@ TPolinom TPolinom :: operator+( TPolinom &q) { // ñëîæåíèå ïîëèíî�
 
 	}
 
+TPolinom& TPolinom::operator+=(TPolinom& q)
+{
+	PTMonom pm, qm, rm;
+	Reset();
+	q.Reset();
+	while (1)
+	{
+		pm = GetMonom();
+		qm = q.GetMonom();
+
+		if (pm->Index < qm->Index)
+		{
+			rm = new TMonom(qm->Coeff, qm->Index);
+			InsCurrent(rm); 
+			q.GoNext();
+		}
+		else 
+			if (pm->Index > qm->Index) GoNext();
+		else 
+		{
+			if (pm->Index == -1)
+				break;
+			pm->Coeff += qm->Coeff;
+			if (pm->Coeff != 0) 
+			{
+				GoNext();
+				q.GoNext();
+			}
+			else 
+			{
+				DelCurrent();
+				q.GoNext();
+			}
+		}
+	}
+	return *this;
+}
+
 TPolinom & TPolinom :: operator=( TPolinom &q) { // ïðèñâàèâàíèå
 	PTMonom pMonom = new TMonom (0, -1);
 	pHead -> SetDatValue (pMonom);
