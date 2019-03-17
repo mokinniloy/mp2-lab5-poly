@@ -1,7 +1,7 @@
 #include "Polinom.h"
 
 
-TPolinom :: TPolinom ( int monoms[][2], int km ) { // êîíñòðóêòîð ïîëèíîìà èç ìàññèâà «êîýôôèöèåíò-èíäåêñ»
+TPolinom :: TPolinom ( int monoms[][2], int km ) { // ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Ã¯Ã®Ã«Ã¨Ã­Ã®Ã¬Ã  Ã¨Ã§ Ã¬Ã Ã±Ã±Ã¨Ã¢Ã  Â«ÃªÃ®Ã½Ã´Ã´Ã¨Ã¶Ã¨Ã¥Ã­Ã²-Ã¨Ã­Ã¤Ã¥ÃªÃ±Â»
 	PTMonom pMonom = new TMonom (0, -1);
 	pHead -> SetDatValue(pMonom);
 	for (int i = 0; i < km; i++) {
@@ -9,7 +9,7 @@ TPolinom :: TPolinom ( int monoms[][2], int km ) { // êîíñòðóêòîð ïîëèíîìà èç ìà
 		InsLast(pMonom);
 	}
 }
-TPolinom :: TPolinom (TPolinom &q) {    // êîíñòðóêòîð êîïèðîâàíèÿ
+TPolinom :: TPolinom (TPolinom &q) {    // ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° ÃªÃ®Ã¯Ã¨Ã°Ã®Ã¢Ã Ã­Ã¨Ã¿
 	PTMonom pMonom = new TMonom (0, -1);
 	pHead -> SetDatValue(pMonom);
 	for (q.Reset(); !q.IsListEnded(); q.GoNext()) {
@@ -18,7 +18,7 @@ TPolinom :: TPolinom (TPolinom &q) {    // êîíñòðóêòîð êîïèðîâàíèÿ
 	}
 }
 
-TPolinom TPolinom :: operator+( TPolinom &q) { // ñëîæåíèå ïîëèíîìîâ
+TPolinom TPolinom :: operator+( TPolinom &q) { // Ã±Ã«Ã®Ã¦Ã¥Ã­Ã¨Ã¥ Ã¯Ã®Ã«Ã¨Ã­Ã®Ã¬Ã®Ã¢
 	PTMonom pm, qm, rm;
 	Reset();
 	q.Reset();
@@ -26,14 +26,14 @@ TPolinom TPolinom :: operator+( TPolinom &q) { // ñëîæåíèå ïîëèíîìîâ
 		pm = GetMonom();
 		qm = q.GetMonom();
 
-		if (pm->Index < qm->Index) { //ìîíîì pm ìëàäøå ìîíîìà qm, òîãäà äîáàâëÿåì qm â p
+		if (pm->Index < qm->Index) { //Ã¬Ã®Ã­Ã®Ã¬ pm Ã¬Ã«Ã Ã¤Ã¸Ã¥ Ã¬Ã®Ã­Ã®Ã¬Ã  qm, Ã²Ã®Ã£Ã¤Ã  Ã¤Ã®Ã¡Ã Ã¢Ã«Ã¿Ã¥Ã¬ qm Ã¢ p
 			rm = new TMonom(qm->Coeff, qm->Index);
 			InsCurrent(rm);
 			q.GoNext();
 		}
 		else if (pm->Index > qm->Index) GoNext();
-		else { //èíäåêñû ðàâíû
-			if (pm->Index == -1) //ïðîâåðêà, íå ãîëîâà ëè?
+		else { //Ã¨Ã­Ã¤Ã¥ÃªÃ±Ã» Ã°Ã Ã¢Ã­Ã»
+			if (pm->Index == -1) //Ã¯Ã°Ã®Ã¢Ã¥Ã°ÃªÃ , Ã­Ã¥ Ã£Ã®Ã«Ã®Ã¢Ã  Ã«Ã¨?
 				break;
 			pm->Coeff += qm->Coeff;
 			if (pm->Coeff != 0) {
@@ -57,7 +57,7 @@ TPolinom TPolinom :: operator+( TPolinom &q) { // ñëîæåíèå ïîëèíîìîâ
 
 	}
 
-TPolinom & TPolinom :: operator=( TPolinom &q) { // ïðèñâàèâàíèå
+TPolinom & TPolinom :: operator=( TPolinom &q) { // Ã¯Ã°Ã¨Ã±Ã¢Ã Ã¨Ã¢Ã Ã­Ã¨Ã¥
 	PTMonom pMonom = new TMonom (0, -1);
 	pHead -> SetDatValue (pMonom);
 	for (q.Reset(); !q.IsListEnded(); q.GoNext()) {
@@ -68,7 +68,7 @@ TPolinom & TPolinom :: operator=( TPolinom &q) { // ïðèñâàèâàíèå
 	return *this;
 }
 
-bool TPolinom :: operator==( TPolinom &q) { // ñðàâíåíèå
+bool TPolinom :: operator==( TPolinom &q) { // Ã±Ã°Ã Ã¢Ã­Ã¥Ã­Ã¨Ã¥
 	PTMonom pm, qm;
 	Reset();
 	q.Reset();
@@ -80,7 +80,7 @@ bool TPolinom :: operator==( TPolinom &q) { // ñðàâíåíèå
             return false;
         if(pm->Coeff != qm -> Coeff)
             return false;
-        if(pm -> Coeff != 0 && qm -> Coeff == 0 || pm -> Coeff == 0 && qm -> Coeff != 0)
+        if((pm -> Coeff != 0 && qm -> Coeff == 0) || (pm -> Coeff == 0 && qm -> Coeff != 0))
             return false;
         else {
             if(pm -> Coeff == 0 && qm -> Coeff == 0)
