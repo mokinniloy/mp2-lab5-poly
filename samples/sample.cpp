@@ -32,11 +32,11 @@ int main ()
 	int mn2 = sizeof(ms2)/(2*sizeof(int));
 	TPolinom pol2 (ms2, mn2);
 	cout<<"Second polinom\n"<<pol2<<endl;
-	TPolinom r = pol1 + pol2;
+	TPolinom r;
+	r = pol1 + pol2;
 	cout<<"Result: \n"<<r<<endl;
 
 	cout<<"Click enter..."<<endl;
-	_getch();
 
 	return 0;
 }
