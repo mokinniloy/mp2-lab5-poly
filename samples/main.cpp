@@ -1,8 +1,8 @@
-// тестирование списка
+// ГІГҐГ±ГІГЁГ°Г®ГўГ Г­ГЁГҐ Г±ГЇГЁГ±ГЄГ 
 #include "Monom.h"
 #include "DatList.h"
 #include <iostream>
-#include <conio.h>
+//#include <conio.h>
 
 
 
@@ -28,7 +28,7 @@ int main()
     }
     st.DelList();
     cout << "Press any key" << endl;
-    getch();
+    //getch();
     
     return 0;
 }
