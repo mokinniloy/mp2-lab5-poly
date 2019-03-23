@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <gtest/gtest.h>
+#include <gtest.h>
 #include "Polinom.h"
 
 TEST(TMonom, is_possible_to_create_monom)
